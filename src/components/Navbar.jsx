@@ -27,7 +27,7 @@ function Navbar() {
       </ul>
 
       <button className="bg-purple-900 px-5 py-2 rounded-lg">
-        Postular
+        Iniciar sesión
       </button>
 
     </nav>

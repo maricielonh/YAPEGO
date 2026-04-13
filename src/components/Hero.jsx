@@ -29,9 +29,9 @@ export default function Hero() {
             Empoderando a la Juventud Peruana mediante oportunidades laborales.
           </p>
 
-          {/* El botón ahora "flotará" por encima de cualquier recorte */}
+          {/* botooon flotante*/}
           <button className="bg-[#00ffa3] text-black px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:scale-105 transition-all active:scale-95 border-none cursor-pointer">
-            Participa en el Hackathon
+            Postular
           </button>
         </div>
       </div>
