@@ -31,7 +31,7 @@ export default function Hero() {
 
           {/* botooon flotante*/}
           <button className="bg-[#00ffa3] text-black px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:scale-105 transition-all active:scale-95 border-none cursor-pointer">
-            Postular
+            Explora Yape
           </button>
         </div>
       </div>

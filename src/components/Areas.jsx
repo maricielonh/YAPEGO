@@ -1,25 +1,36 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom"; // Importante para la navegación
 
 const areas = [
-  { title: "Tecnología", icon: "💻" },
-  { title: "Datos y Analítica", icon: "📊" },
-  { title: "Marketing", icon: "📢" },
-  { title: "Diseño UX/UI", icon: "🎨" },
-  { title: "Producto", icon: "🚀" },
-  { title: "Operaciones", icon: "⚙️" },
-  { title: "Talento", icon: "🤝" },
-  { title: "Negocios", icon: "💼" }
+  { title: "Tech", icon: "💻" },
+  { title: "Data & Analytics", icon: "📊" },
+  { title: "People", icon: "🤝" },
+  { title: "Planeamiento", icon: "📅" },
+  { title: "Experiencia", icon: "✨" },
+  { title: "Pagos", icon: "💳" },
+  { title: "Commerce", icon: "🛍️" },
+  { title: "Marketing", icon: "📢" }
 ];
 
 export default function Areas() {
   const scrollRef = useRef(null);
 
+  // Función para desplazar el carrusel
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { clientWidth } = scrollRef.current;
       const offset = direction === "left" ? -clientWidth : clientWidth;
       scrollRef.current.scrollBy({ left: offset, behavior: "smooth" });
     }
+  };
+
+  // Función para crear una URL limpia (ej: "Data & Analytics" -> "data-analytics")
+  const createSlug = (text) => {
+    return text
+      .toLowerCase()
+      .replace(/&/g, 'and') // Cambia & por 'and'
+      .replace(/[\s\W-]+/g, '-') // Cambia espacios y caracteres raros por guiones
+      .replace(/^-+|-+$/g, ''); // Limpia guiones al inicio o final
   };
 
   return (
@@ -30,7 +41,6 @@ export default function Areas() {
           Conoce las áreas
         </h2>
 
-        {/* Contenedor Relativo para las flechas */}
         <div className="relative group">
           
           {/* Flecha Izquierda */}
@@ -54,7 +64,7 @@ export default function Areas() {
             {areas.map((area, i) => (
               <div 
                 key={i}
-                className="min-w-[280px] md:min-w-[380px] snap-start bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all"
+                className="min-w-[280px] md:min-w-[380px] snap-start bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col items-start"
               >
                 <div className="text-5xl mb-6">{area.icon}</div>
                 
@@ -62,9 +72,13 @@ export default function Areas() {
                   {area.title}
                 </h3>
                 
-                <button className="bg-[#b347ff] hover:bg-[#a236ee] text-white font-bold px-8 py-3 rounded-xl transition-colors">
+                {/* El Link dirige a la página de detalle usando el slug del título */}
+                <Link 
+                  to={`/areas/${createSlug(area.title)}`}
+                  className="bg-[#b347ff] hover:bg-[#a236ee] text-white font-bold px-8 py-3 rounded-xl transition-colors inline-block mt-auto"
+                >
                   Ver roles
-                </button>
+                </Link>
               </div>
             ))}
           </div>
@@ -81,6 +95,7 @@ export default function Areas() {
         </div>
       </div>
 
+      {/* Estilo para ocultar la barra de scroll visualmente */}
       <style dangerouslySetInnerHTML={{ __html: `
         .no-scrollbar::-webkit-scrollbar { display: none; }
       `}} />
