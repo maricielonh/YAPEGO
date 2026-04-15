@@ -7,6 +7,7 @@ import Testimonios from "./components/Testimonios";
 import Postula from "./components/Postula";
 import Footer from "./components/Footer";
 import DetalleArea from "./pages/DetalleArea"; // <--- Crearemos este archivo ahora
+import ExploraYape from "./pages/ExploraYape";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
             <Postula />
           </>
         } />
-
+<Route path="/explora" element={<ExploraYape />} />
         {/* RUTA DINÁMICA: Se activa al entrar a /areas/marketing, etc. */}
         <Route path="/areas/:id" element={<DetalleArea />} />
       </Routes>

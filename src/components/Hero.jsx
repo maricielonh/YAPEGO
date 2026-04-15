@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 export default function Hero() {
   return (
     /* 1. El contenedor principal NO lleva clipPath */
@@ -30,9 +31,40 @@ export default function Hero() {
           </p>
 
           {/* botooon flotante*/}
-          <button className="bg-[#00ffa3] text-black px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:scale-105 transition-all active:scale-95 border-none cursor-pointer">
-            Explora Yape
-          </button>
+<div className="flex justify-center md:justify-start"> {/* Contenedor para alinear el botón */}
+  <Link to="/explora">
+    <button className="
+      /* Color de fondo y texto */
+      bg-[#00FFAB] text-[#330077]
+      
+      /* Tipografía y espaciado */
+      font-bold text-lg px-10 py-4 
+      
+      /* Bordes muy redondeados (píldora) */
+      rounded-full 
+      
+      /* Sombra y transiciones base */
+      shadow-md shadow-[#00ffab]/30
+      transition-all duration-300 ease-in-out
+      
+      /* EFECTOS AL PASAR EL MOUSE (HOVER) */
+      hover:bg-white             /* Cambia a blanco */
+      hover:text-[#330077]       /* Mantiene el texto morado */
+      hover:shadow-xl            /* La sombra crece para dar efecto de elevación */
+      hover:shadow-[#330077]/20  /* La sombra cambia de color a morado suave */
+      hover:-translate-y-1       /* El botón sube ligeramente */
+      
+      /* EFECTO AL HACER CLIC (ACTIVE) */
+      active:scale-95            /* Se encoge un poco para simular un clic físico */
+      active:translate-y-0       /* Vuelve a su altura normal */
+      
+      /* Enfoque para accesibilidad */
+      focus:outline-none focus:ring-4 focus:ring-[#00ffab]/50
+    ">
+      Explora Yape
+    </button>
+  </Link>
+</div>
         </div>
       </div>
       
