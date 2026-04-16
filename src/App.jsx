@@ -17,6 +17,7 @@ import ChatBotYape from "./components/ChatBotYape";
 import ConfianzaLaboral from "./components/ConfianzaLaboral";
 import FormularioPostulacion from "./pages/FormularioPostulacion";
 import Login from "./pages/Login";
+import Registro from "./pages/Registro";
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
 
         {/* 🔍 DETALLE DINÁMICO */}
         <Route path="/areas/:id" element={<DetalleArea />} />
+        <Route path="/registro" element={<Registro />} />
       </Routes>
 
       <Footer />

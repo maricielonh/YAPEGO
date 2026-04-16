@@ -194,10 +194,10 @@ export default function Orientacion() {
             Únete a un equipo que prioriza el aprendizaje autónomo y el crecimiento constante.
           </p>
           <Link
-            to="/postula"
+            to="/registro"
             className="inline-block bg-white text-[#7422c4] px-10 py-5 rounded-2xl font-black text-lg hover:bg-purple-50 transition-all shadow-xl active:scale-95"
           >
-            Postular ahora 🚀
+            Recibir información laboral ✨
           </Link>
         </div>
       </section>
