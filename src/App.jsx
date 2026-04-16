@@ -7,16 +7,17 @@ import Areas from "./components/Areas";
 import Testimonios from "./components/Testimonios";
 import Postula from "./components/Postula";
 import Footer from "./components/Footer";
-<<<<<<< HEAD
-import DetalleArea from "./pages/DetalleArea"; // <--- Crearemos este archivo ahora
 import ExploraYape from "./pages/ExploraYape";
-=======
-
 import DetalleArea from "./pages/DetalleArea";
 import Inspiracion from "./pages/Inspiracion";
 import Aprendizaje from "./pages/Aprendizaje";
 import Orientacion from "./pages/Orientacion";
->>>>>>> 04193ecf10f4218e3aec0f01f72c679807e36a91
+import Estadisticas from "./components/Estadisticas";
+import ChatBotYape from "./components/ChatBotYape";
+import ConfianzaLaboral from "./components/ConfianzaLaboral";
+import FormularioPostulacion from "./pages/FormularioPostulacion";
+import Login from "./pages/Login";
+
 
 function App() {
   return (
@@ -24,33 +25,32 @@ function App() {
       <Navbar />
 
       <Routes>
-
-        {/* 🏠 HOME (tu landing completa) */}
+        {/* 🏠 HOME (Landing completa) */}
         <Route path="/" element={
           <>
             <Hero />
             <Areas />
             <Testimonios />
+            <Estadisticas />
             <Postula />
           </>
         } />
-<<<<<<< HEAD
-<Route path="/explora" element={<ExploraYape />} />
-        {/* RUTA DINÁMICA: Se activa al entrar a /areas/marketing, etc. */}
-=======
 
-        {/* 🆕 TUS NUEVAS PÁGINAS */}
+        {/* 🚀 TUS RUTAS FUSIONADAS */}
+        <Route path="/explora" element={<ExploraYape />} />
         <Route path="/inspiracion" element={<Inspiracion />} />
         <Route path="/aprendizaje" element={<Aprendizaje />} />
         <Route path="/orientacion" element={<Orientacion />} />
+        <Route path="/confianzalaboral" element={<ConfianzaLaboral />} />
+        <Route path="/postular/:area" element={<FormularioPostulacion />} />
+        <Route path="/login" element={<Login />} />
 
-        {/* 🔍 DETALLE */}
->>>>>>> 04193ecf10f4218e3aec0f01f72c679807e36a91
+        {/* 🔍 DETALLE DINÁMICO */}
         <Route path="/areas/:id" element={<DetalleArea />} />
-
       </Routes>
 
       <Footer />
+      <ChatBotYape />
     </Router>
   );
 }

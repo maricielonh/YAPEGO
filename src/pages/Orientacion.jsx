@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { CheckCircle, XCircle, ChevronRight, Rocket, Target, Users } from 'lucide-react';
 
 export default function Orientacion() {
   const preguntas = [
@@ -17,178 +18,189 @@ export default function Orientacion() {
     setRespuestas(nuevas);
   };
 
-  const progreso =
-    (respuestas.filter((r) => r !== null).length / preguntas.length) * 100;
-
+  const progreso = (respuestas.filter((r) => r !== null).length / preguntas.length) * 100;
   const califica = respuestas.every((r) => r === true);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-purple-100 px-6 md:px-20 py-12">
+    // SECCIÓN CORREGIDA: pt-32 asegura que el Navbar no tape el título
+    <div className="min-h-screen bg-[#F9FAFB] px-6 md:px-20 pt-32 pb-20 font-sans">
 
-      {/* HERO */}
-      <section className="text-center mb-12">
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-5xl font-bold text-purple-700"
+      {/* HERO SECTION */}
+      <section className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="inline-flex items-center gap-2 bg-purple-100 text-[#7422c4] px-4 py-2 rounded-full text-sm font-bold mb-6"
         >
-          Orientación para Postular 🧭
+          <Rocket size={16} /> <span>Tu carrera empieza aquí</span>
+        </motion.div>
+        
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight"
+        >
+          Orientación para <span className="text-[#7422c4]">Postular</span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mt-4 text-gray-600 max-w-2xl mx-auto"
+          className="mt-6 text-gray-500 text-lg max-w-2xl mx-auto font-light leading-relaxed"
         >
-          Te guiamos paso a paso y te ayudamos a descubrir si estás listo para ser parte de Yape 🚀
+          Te guiamos paso a paso y te ayudamos a descubrir si estás listo para ser parte de la comunidad Yape Go.
         </motion.p>
       </section>
 
-      {/* REQUISITOS */}
-      <section className="mb-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-white p-8 rounded-3xl shadow-lg"
+      <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+        
+        {/* COLUMNA IZQUIERDA: REQUISITOS */}
+        <div className="space-y-8">
+          <motion.section
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="bg-white p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-gray-100"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-purple-50 text-[#7422c4] rounded-2xl">
+                <Target size={24} />
+              </div>
+              <h2 className="text-2xl font-black text-gray-900">Criterios clave</h2>
+            </div>
+
+            <ul className="space-y-4">
+              {[
+                { icon: <Users className="text-emerald-500" />, text: "Ser joven con ganas de mejorar" },
+                { icon: <CheckCircle className="text-emerald-500" />, text: "Compromiso con el autoaprendizaje" },
+                { icon: <CheckCircle className="text-emerald-500" />, text: "Tener acceso a una conexión estable" }
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 transition-hover hover:border-purple-200">
+                  {item.icon}
+                  <span className="font-semibold text-gray-700">{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.section>
+
+          {/* PASOS DE POSTULACIÓN */}
+          <section>
+            <h2 className="text-2xl font-black mb-6 text-gray-900 ml-2">El camino a seguir</h2>
+            <div className="grid gap-4">
+              {["Regístrate y completa tu perfil", "Evaluación de habilidades", "Entrevista con el equipo"].map((step, i) => (
+                <div key={i} className="flex items-center gap-4 bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+                  <span className="w-10 h-10 flex items-center justify-center bg-[#7422c4] text-white rounded-xl font-black">
+                    {i + 1}
+                  </span>
+                  <p className="font-bold text-gray-700">{step}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        {/* COLUMNA DERECHA: TEST INTERACTIVO */}
+        <motion.section 
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="bg-white p-10 rounded-[2.5rem] shadow-[0_20px_50px_rgba(116,34,196,0.08)] border-2 border-[#7422c4]/10 sticky top-32"
         >
-          <h2 className="text-xl font-bold mb-4">
-            🎯 Criterios de elegibilidad
-          </h2>
+          <h2 className="text-2xl font-black mb-2 text-gray-900">¿Estás listo hoy?</h2>
+          <p className="text-gray-400 mb-8 font-light italic">Responde con sinceridad para ver tu resultado</p>
 
-          <ul className="space-y-3 text-gray-600">
-            <li>✅ Ser joven con ganas de mejorar</li>
-            <li>🌐 Tener acceso a internet</li>
-            <li>💪 Compromiso con el aprendizaje</li>
-          </ul>
-        </motion.div>
-      </section>
-
-      {/* TEST INTERACTIVO */}
-      <section className="mb-12">
-        <div className="bg-white p-8 rounded-3xl shadow-lg">
-
-          <h2 className="text-xl font-bold mb-4">
-            🎯 ¿Calificas para postular?
-          </h2>
-
-          {/* PROGRESO */}
-          <div className="w-full bg-gray-200 rounded-full h-3 mb-6 overflow-hidden">
+          <div className="w-full bg-gray-100 rounded-full h-3 mb-10 overflow-hidden">
             <motion.div
-              className="bg-purple-600 h-3"
+              className="bg-[#7422c4] h-3 shadow-[0_0_15px_rgba(116,34,196,0.4)]"
               initial={{ width: 0 }}
               animate={{ width: `${progreso}%` }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.6 }}
             />
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-8">
             {preguntas.map((pregunta, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <p className="font-medium mb-2">{pregunta}</p>
-
-                <div className="flex gap-3">
+              <div key={i} className="group">
+                <p className="font-bold text-gray-800 mb-4 text-lg">{pregunta}</p>
+                <div className="flex gap-4">
                   <button
                     onClick={() => handleRespuesta(i, true)}
-                    className={`px-4 py-2 rounded-xl border transition ${
+                    className={`flex-1 py-4 rounded-2xl font-black transition-all transform active:scale-95 ${
                       respuestas[i] === true
-                        ? "bg-green-500 text-white scale-105"
-                        : "bg-white hover:bg-gray-100"
+                        ? "bg-emerald-500 text-white shadow-lg shadow-emerald-200"
+                        : "bg-gray-50 text-gray-400 hover:bg-emerald-50 hover:text-emerald-500"
                     }`}
                   >
-                    Sí
+                    Sí, claro
                   </button>
-
                   <button
                     onClick={() => handleRespuesta(i, false)}
-                    className={`px-4 py-2 rounded-xl border transition ${
+                    className={`flex-1 py-4 rounded-2xl font-black transition-all transform active:scale-95 ${
                       respuestas[i] === false
-                        ? "bg-red-500 text-white scale-105"
-                        : "bg-white hover:bg-gray-100"
+                        ? "bg-rose-500 text-white shadow-lg shadow-rose-200"
+                        : "bg-gray-50 text-gray-400 hover:bg-rose-50 hover:text-rose-500"
                     }`}
                   >
-                    No
+                    Aún no
                   </button>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          {/* RESULTADO */}
+          {/* RESULTADO DINÁMICO */}
           {progreso === 100 && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="mt-6 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`mt-10 p-6 rounded-3xl text-center ${
+                califica ? "bg-emerald-50 border border-emerald-100" : "bg-rose-50 border border-rose-100"
+              }`}
             >
               {califica ? (
-                <div className="text-green-600 font-bold text-lg">
-                  🎉 ¡Cumples con los requisitos!
+                <div>
+                  <div className="text-emerald-600 font-black text-xl mb-2 flex justify-center items-center gap-2">
+                    <CheckCircle /> ¡Todo listo para postular!
+                  </div>
+                  <Link
+                    to="/areas"
+                    className="inline-flex items-center gap-2 mt-4 bg-[#7422c4] text-white px-8 py-4 rounded-2xl font-black hover:bg-[#5d1ba1] transition-all shadow-xl shadow-purple-200"
+                  >
+                    Ver áreas abiertas <ChevronRight size={20} />
+                  </Link>
                 </div>
               ) : (
-                <div className="text-red-500 font-bold text-lg">
-                  ⚠️ Aún puedes mejorar algunos aspectos
+                <div className="text-rose-600 font-black text-xl">
+                  <div className="flex justify-center items-center gap-2 mb-2">
+                    <XCircle /> ¡No te detengas!
+                  </div>
+                  <p className="text-sm text-rose-400 font-medium">Revisa los criterios arriba para prepararte mejor.</p>
                 </div>
               )}
             </motion.div>
           )}
-        </div>
-      </section>
+        </motion.section>
+      </div>
 
-      {/* PASOS */}
-      <section className="mb-12">
-        <h2 className="text-xl font-bold mb-6 text-gray-800">
-          🚀 ¿Cómo postular?
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            "Regístrate",
-            "Evaluación",
-            "Entrevista"
-          ].map((step, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              className="bg-white p-6 rounded-2xl shadow-md text-center"
-            >
-              <div className="text-purple-600 font-bold mb-2">
-                Paso {i + 1}
-              </div>
-              <p className="font-semibold">{step}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="text-center">
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="bg-purple-700 text-white p-8 rounded-3xl shadow-xl"
-        >
-          <h2 className="text-2xl font-bold">
-            💼 ¿Listo para dar el siguiente paso?
+      {/* FINAL CTA */}
+      <section className="mt-24 max-w-5xl mx-auto">
+        <div className="bg-[#7422c4] p-12 rounded-[3rem] text-center text-white relative overflow-hidden shadow-2xl">
+          {/* Círculo decorativo */}
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+          
+          <h2 className="text-3xl md:text-5xl font-black mb-6">
+            Impulsa tu talento digital
           </h2>
-
-          <p className="mt-3 text-purple-100">
-            Postula ahora y empieza tu crecimiento con nosotros
+          <p className="text-purple-100 text-lg mb-10 max-w-xl mx-auto font-light">
+            Únete a un equipo que prioriza el aprendizaje autónomo y el crecimiento constante.
           </p>
-
           <Link
             to="/postula"
-            className="inline-block mt-5 bg-white text-purple-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition"
+            className="inline-block bg-white text-[#7422c4] px-10 py-5 rounded-2xl font-black text-lg hover:bg-purple-50 transition-all shadow-xl active:scale-95"
           >
             Postular ahora 🚀
           </Link>
-        </motion.div>
+        </div>
       </section>
-
     </div>
   );
 }
