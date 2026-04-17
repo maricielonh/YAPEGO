@@ -2,9 +2,14 @@ import React from "react";
 import Card from "../components/Card";
 import { motion } from "framer-motion";
 import { BookOpen, Wallet, PiggyBank, Smartphone, PlayCircle, CheckCircle2 } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 export default function Aprendizaje() {
+ 
+ const navigate = useNavigate();
   return (
+    
+
     // SECCIÓN CORREGIDA: pt-32 para el espacio del Navbar y fondo refinado
     <div className="min-h-screen bg-[#F9FAFB] px-6 md:px-20 pt-32 pb-20 font-sans">
 
@@ -76,9 +81,12 @@ export default function Aprendizaje() {
               Queremos que construyas tu <strong>independencia financiera</strong>. Conseguir el empleo es el primer paso; saber qué hacer con tu primer sueldo es el que cambia tu vida.
             </p>
           </div>
-          <button className="bg-white text-[#7422c4] px-8 py-4 rounded-2xl font-black shadow-xl hover:bg-purple-50 transition-all active:scale-95">
-            Empezar curso gratis
-          </button>
+          <button
+  onClick={() => navigate("/curso")}
+  className="bg-white text-[#7422c4] px-8 py-4 rounded-2xl font-black shadow-xl hover:bg-purple-50 transition-all active:scale-95"
+>
+  Empezar curso gratis
+</button>
         </div>
       </motion.div>
 
@@ -91,41 +99,58 @@ export default function Aprendizaje() {
           <h2 className="text-3xl font-black text-gray-900">Aprende viendo</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10 mt-6">
-          {/* VIDEO 1 */}
-          <motion.div 
-            whileHover={{ scale: 1.02 }}
-            className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden group hover:shadow-xl transition-all"
-          >
-            <div className="relative">
-              <video controls className="w-full h-64 object-cover">
-                <source src="/videos/presupuesto.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div className="p-8">
-              <p className="font-black text-xl text-gray-900 mb-2">💰 Cómo hacer tu presupuesto</p>
-              <p className="text-gray-500 font-light">Aprende a organizar tu dinero desde cero con plantillas reales.</p>
-            </div>
-          </motion.div>
+<div className="grid md:grid-cols-2 gap-10 mt-6">
 
-          {/* VIDEO 2 */}
-          <motion.div 
-            whileHover={{ scale: 1.02 }}
-            className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden group hover:shadow-xl transition-all"
-          >
-            <div className="relative">
-              <video controls className="w-full h-64 object-cover">
-                <source src="/videos/ahorro.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <div className="p-8">
-              <p className="font-black text-xl text-gray-900 mb-2">🐷 Tips para ahorrar</p>
-              <p className="text-gray-500 font-light">Pequeños cambios en tus hábitos que harán crecer tu cuenta de Yape.</p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
+  {/* VIDEO 1 */}
+  <motion.div 
+    whileHover={{ scale: 1.02 }}
+    className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all"
+  >
+    <iframe
+  className="w-full h-64 rounded-t-[2.5rem]"
+  src="https://www.youtube.com/embed/f2O4Q-T12FI"
+  title="YouTube video"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+></iframe>
 
+    <div className="p-8">
+      <p className="font-black text-xl text-gray-900 mb-2">
+        💰 Cómo hacer tu presupuesto
+      </p>
+      <p className="text-gray-500 font-light">
+        Aprende a organizar tu dinero desde cero con plantillas reales.
+      </p>
+    </div>
+  </motion.div>
+
+  {/* VIDEO 2 */}
+  <motion.div 
+    whileHover={{ scale: 1.02 }}
+    className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all"
+  >
+    <iframe
+      className="w-full h-64 rounded-t-[2.5rem]"
+      src="https://www.youtube.com/embed/QThz1B8SHmc"
+      title="YouTube video"
+       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+
+    <div className="p-8">
+      <p className="font-black text-xl text-gray-900 mb-2">
+        🐷 Tips para ahorrar
+      </p>
+      <p className="text-gray-500 font-light">
+        Pequeños cambios en tus hábitos que harán crecer tu cuenta de Yape.
+      </p>
+    </div>
+  </motion.div>
+
+</div>
+</div>
+     
+     
       {/* RECOMENDACIONES FINALES */}
       <motion.div 
         initial={{ opacity: 0 }}
@@ -145,6 +170,60 @@ export default function Aprendizaje() {
             </div>
           ))}
         </div>
+      </motion.div>
+
+      {/* RECOMENDACIONES FINALES */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        className="mt-24 max-w-3xl"
+      >
+        <h2 className="text-2xl font-black text-gray-900 mb-8 ml-2">💡 Recomendaciones para ti</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+  {[
+    {
+      titulo: "Padre Rico, Padre Pobre",
+      autor: "Robert Kiyosaki",
+      link: "https://www.amazon.com/"
+    },
+    {
+      titulo: "El Hombre Más Rico de Babilonia",
+      autor: "George S. Clason",
+      link: "https://www.amazon.com/"
+    },
+    {
+      titulo: "Economia para andar por casa",
+      autor: "Varios autores",
+      link: "https://www.casadellibro.com/libro-economia-para-andar-por-casa/9788483566954/2001775?srsltid=AfmBOooMCKQeCaIiu4kE9EWZVQ7WYITw3NaM_o59EeHw1DtF4FVdQKC9"
+    },
+    {
+      titulo: "Educación financiera avanzada partiendo de cero",
+      autor: "Gregorio Hernández Jiménez",
+      link: "https://www.amazon.com/-/es/Educaci%C3%B3n-financiera-avanzada-partiendo-cero/dp/1495247481"
+    },
+    {
+      titulo: "Economía básica",
+      autor: "Thomas Sowell",
+      link: "https://www.amazon.com/-/es/Econom%C3%ADa-b%C3%A1sica-econom%C3%ADa-escrito-sentido/dp/8423412644"
+    },
+    {
+      titulo: "La bolsa o la vida",
+      autor: "Vicki Robin",
+      link: "https://www.amazon.com/-/es/bolsa-vida-transformar-relaci%C3%B3n-financiera/dp/8416788103"
+    },
+  ].map((libro, i) => (
+    <a
+      key={i}
+      href={libro.link}
+      target="_blank"
+      className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all block"
+    >
+      <p className="font-black text-gray-900 text-lg">{libro.titulo}</p>
+      <p className="text-gray-500">{libro.autor}</p>
+      <p className="mt-3 text-[#7422c4] font-bold">Ver libro →</p>
+    </a>
+  ))}
+</div>
       </motion.div>
 
     </div>

@@ -12,6 +12,14 @@ export default function Orientacion() {
 
   const [respuestas, setRespuestas] = useState(Array(preguntas.length).fill(null));
 
+  const [intereses, setIntereses] = useState({
+  area: "",
+  nivel: "",
+  objetivo: ""
+});
+
+const [resultadoQuiz, setResultadoQuiz] = useState(null);
+
   const handleRespuesta = (index, valor) => {
     const nuevas = [...respuestas];
     nuevas[index] = valor;
@@ -21,6 +29,40 @@ export default function Orientacion() {
   const progreso = (respuestas.filter((r) => r !== null).length / preguntas.length) * 100;
   const califica = respuestas.every((r) => r === true);
 
+    const obtenerRecomendaciones = () => {
+  const tips = [];
+
+  if (respuestas[0] === false) {
+    tips.push("Puedes usar cabinas públicas, redes compartidas o espacios gratuitos con internet.");
+  }
+  if (respuestas[1] === false) {
+    tips.push("Empieza con contenido corto para descubrir qué te gusta.");
+  }
+  if (respuestas[2] === false) {
+    tips.push("Comienza con solo 20 minutos al día. La constancia vale más que la intensidad.");
+  }
+
+  return tips;
+};
+
+// 👇 ESTA VA AFUERA (IMPORTANTE)
+const generarResultado = () => {
+  let resultado = "";
+
+  const texto = intereses.area.toLowerCase();
+
+  if (texto.includes("diseño")) {
+    resultado = "Creatividad visual 🎨 (Diseño UX/UI, branding)";
+  } else if (texto.includes("program")) {
+    resultado = "Desarrollo tecnológico 💻 (Frontend, Backend)";
+  } else if (texto.includes("marketing")) {
+    resultado = "Marketing digital 📈 (Redes, contenido)";
+  } else {
+    resultado = "Explorador digital 🚀 (puedes descubrir múltiples áreas)";
+  }
+
+  setResultadoQuiz(resultado);
+};
   return (
     // SECCIÓN CORREGIDA: pt-32 asegura que el Navbar no tape el título
     <div className="min-h-screen bg-[#F9FAFB] px-6 md:px-20 pt-32 pb-20 font-sans">
@@ -169,12 +211,23 @@ export default function Orientacion() {
                   </Link>
                 </div>
               ) : (
-                <div className="text-rose-600 font-black text-xl">
-                  <div className="flex justify-center items-center gap-2 mb-2">
-                    <XCircle /> ¡No te detengas!
-                  </div>
-                  <p className="text-sm text-rose-400 font-medium">Revisa los criterios arriba para prepararte mejor.</p>
-                </div>
+                <div className="text-center">
+  <div className="text-rose-600 font-black text-xl flex justify-center gap-2 mb-3">
+    <XCircle /> Estás en proceso 💪
+  </div>
+
+  <p className="text-gray-600 text-sm mb-4">
+    No necesitas cumplir todo hoy. Te ayudamos a avanzar paso a paso.
+  </p>
+
+  <div className="bg-white rounded-2xl p-4 text-left border border-rose-100 space-y-2">
+    {obtenerRecomendaciones().map((tip, i) => (
+      <p key={i} className="text-sm text-gray-700">
+        👉 {tip}
+      </p>
+    ))}
+  </div>
+</div>
               )}
             </motion.div>
           )}
@@ -199,8 +252,62 @@ export default function Orientacion() {
           >
             Recibir información laboral ✨
           </Link>
+
+            
         </div>
       </section>
+      
+      {resultadoQuiz && (
+  <div className="mt-10 bg-purple-50 p-6 rounded-3xl text-center border border-purple-100">
+    <h3 className="text-xl font-black text-[#7422c4] mb-2">
+      Tu posible camino:
+    </h3>
+    <p className="text-gray-700 font-semibold">{resultadoQuiz}</p>
+
+  </div>
+)}
+
+          {/* FORMULARIO VOCACIONAL */}
+<section className="mt-20 bg-white p-10 rounded-[2.5rem] shadow-md border border-gray-100 max-w-5xl mx-auto">
+  <h2 className="text-2xl font-black mb-6 text-gray-900">
+    Descubre tu camino ✨
+  </h2>
+
+  <div className="grid md:grid-cols-2 gap-6">
+
+    <input
+      type="text"
+      placeholder="¿Qué te llama la atención?"
+      className="p-4 rounded-xl border border-gray-200"
+      onChange={(e) => setIntereses({ ...intereses, area: e.target.value })}
+    />
+
+    <select
+      className="p-4 rounded-xl border border-gray-200"
+      onChange={(e) => setIntereses({ ...intereses, nivel: e.target.value })}
+    >
+      <option value="">Nivel actual</option>
+      <option>Principiante</option>
+      <option>Intermedio</option>
+      <option>Avanzado</option>
+    </select>
+
+    <textarea
+      placeholder="¿Qué te gustaría lograr?"
+      className="p-4 rounded-xl border border-gray-200 md:col-span-2"
+      onChange={(e) => setIntereses({ ...intereses, objetivo: e.target.value })}
+    />
+  </div>
+
+  <div className="text-center mt-8">
+    <button
+      onClick={() => generarResultado()}
+      className="bg-[#7422c4] text-white px-8 py-4 rounded-2xl font-black"
+    >
+      Ver mi orientación 🚀
+    </button>
+  </div>
+</section>
     </div>
   );
 }

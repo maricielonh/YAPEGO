@@ -182,7 +182,7 @@ const ExploraYape = () => {
     </div>
 
     {/* El Mosaico: 11 líderes */}
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 auto-rows-[200px]">
+    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 auto-rows-[200px] mb-24">
       
       {[
         { id: 1, nombre: "Raimundo Morales", cargo: "Gerente de División Yape", img: "4.jpg", size: "md:col-span-2 md:row-span-2" },
@@ -222,7 +222,80 @@ const ExploraYape = () => {
           </div>
         </div>
       ))}
+    </div>
 
+    {/* --- SECCIÓN AGREGADA: MISIÓN, VISIÓN Y VALORES CON DISEÑO TOP --- */}
+    
+    <div className="relative mt-32 py-20 overflow-hidden rounded-[4rem] bg-[#F4EEFF] border border-white shadow-inner">
+        {/* Decoración de fondo */}
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#7422c4]/5 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#00FFAB]/5 rounded-full blur-3xl"></div>
+
+        <div className="relative z-10 px-8">
+            {/* Misión y Visión con Estilo de Tarjetas Flotantes */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto mb-28">
+                {/* Misión */}
+                <div className="group bg-white/70 backdrop-blur-xl p-12 rounded-[3.5rem] shadow-[0_20px_40px_rgba(0,0,0,0.04)] border border-white transition-all hover:shadow-2xl hover:-translate-y-2">
+                    <div className="w-20 h-20 bg-gradient-to-tr from-[#00FFAB] to-[#00D1FF] rounded-3xl flex items-center justify-center text-4xl mb-8 shadow-lg shadow-[#00FFAB]/20 transform group-hover:rotate-6 transition-transform">🌟</div>
+                    <h2 className="text-4xl font-black text-[#330077] mb-6 tracking-tight">Misión</h2>
+                    <p className="text-gray-600 text-lg font-medium leading-relaxed italic border-l-4 border-[#00FFAB] pl-6">
+                        "Impulsar oportunidades laborales para <span className="text-[#7422c4] font-bold">jóvenes peruanos</span>, conectando talento con empresas de manera rápida, sencilla y accesible."
+                    </p>
+                </div>
+
+                {/* Visión */}
+                <div className="group bg-[#330077] p-12 rounded-[3.5rem] shadow-2xl shadow-purple-900/20 transition-all hover:-translate-y-2 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                    <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-3xl flex items-center justify-center text-4xl mb-8 border border-white/20">🚀</div>
+                    <h2 className="text-4xl font-black text-white mb-6 tracking-tight">Visión</h2>
+                    <p className="text-purple-100 text-lg font-medium leading-relaxed italic border-l-4 border-[#00D1FF] pl-6">
+                        "Ser la <span className="text-[#00FFAB] font-bold">plataforma líder</span> de empleabilidad juvenil en el Perú, promoviendo inclusión, crecimiento profesional y desarrollo."
+                    </p>
+                </div>
+            </div>
+
+            {/* Valores con Diseño de Burbujas Modernas */}
+            <div className="max-w-6xl mx-auto">
+                <div className="text-center mb-20">
+                    <span className="bg-white px-6 py-2 rounded-full text-[#7422c4] font-bold text-xs uppercase tracking-[0.4em] shadow-sm border border-purple-100">Cultura YapeGo</span>
+                    <h2 className="text-6xl font-black text-[#330077] mt-6 tracking-tighter">Nuestros Valores <span className="inline-block animate-pulse">💜</span></h2>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    {[
+                        { e: "🤝", t: "Inclusión", d: "Creemos en oportunidades para todos, sin barreras.", c: "from-purple-500 to-indigo-600" },
+                        { e: "⚡", t: "Innovación", d: "La tecnología es nuestra mejor aliada.", c: "from-cyan-400 to-blue-500" },
+                        { e: "💜", t: "Cercanía", d: "Hablamos simple, de persona a persona.", c: "from-[#7422c4] to-[#B621FE]" },
+                        { e: "🔒", t: "Confianza", d: "Seguridad total en cada paso que das.", c: "from-blue-500 to-indigo-700" },
+                        { e: "📈", t: "Crecimiento", d: "Tú creces, nosotros crecemos contigo.", c: "from-[#00FFAB] to-[#00D1FF]" },
+                        { e: "🌍", t: "Impacto", d: "Transformamos el futuro de nuestro país.", c: "from-orange-400 to-red-500" }
+                    ].map((v, i) => (
+                        <div key={i} className="group relative bg-white p-10 rounded-[3rem] shadow-[0_15px_35px_rgba(0,0,0,0.03)] border border-gray-50 flex flex-col items-center text-center transition-all hover:shadow-2xl hover:border-purple-200">
+                            <div className={`w-20 h-20 bg-gradient-to-br ${v.c} rounded-[2rem] flex items-center justify-center text-4xl mb-6 shadow-lg transform transition-transform group-hover:scale-110 group-hover:rotate-3`}>
+                                {v.e}
+                            </div>
+                            <h4 className="text-2xl font-black text-[#330077] mb-3">{v.t}</h4>
+                            <p className="text-gray-500 font-medium leading-relaxed text-sm opacity-80">{v.d}</p>
+                            
+                            {/* Pequeño detalle decorativo inferior */}
+                            <div className="absolute bottom-6 w-8 h-1 bg-gray-100 rounded-full group-hover:w-16 group-hover:bg-[#7422c4] transition-all duration-500"></div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Texto final de cierre */}
+            <div className="max-w-4xl mx-auto mt-32 text-center p-12 rounded-[3rem] bg-gradient-to-r from-white/40 to-white/10 backdrop-blur-md border border-white shadow-xl">
+                <p className="text-2xl font-black text-[#330077] leading-tight">
+                    "En YapeGo creemos en el talento peruano. Creamos oportunidades reales mediante tecnología, confianza e inclusión laboral."
+                </p>
+                <div className="mt-8 flex justify-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#7422c4]"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#00FFAB]"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#00D1FF]"></div>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
 </section>

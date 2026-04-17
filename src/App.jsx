@@ -21,16 +21,18 @@ import FormularioPostulacion from "./pages/FormularioPostulacion";
 import Login from "./pages/Login";
 import Registro from "./pages/Registro";
 import Perfil from "./pages/Perfil";
+import Curso from "./pages/Curso";
 
 function App() {
   return (
     <Router>
+     
 
       {/* ✅ NAVBAR SIEMPRE VISIBLE */}
       <Navbar />
 
       <Routes>
-
+ <Route path="/curso" element={<Curso />} />
         {/* 🏠 HOME */}
         <Route
           path="/"
@@ -54,7 +56,8 @@ function App() {
 
         {/* 📄 FUNCIONALIDADES */}
         <Route path="/postular/:area" element={<FormularioPostulacion />} />
-        <Route path="/areas/:id" element={<DetalleArea />} />
+        <Route path="/area/:id" element={<DetalleArea />} />
+    
 
         {/* 🔐 AUTH */}
         <Route path="/login" element={<Login />} />
