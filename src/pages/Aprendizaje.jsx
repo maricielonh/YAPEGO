@@ -1,230 +1,307 @@
 import React from "react";
 import Card from "../components/Card";
 import { motion } from "framer-motion";
-import { BookOpen, Wallet, PiggyBank, Smartphone, PlayCircle, CheckCircle2 } from 'lucide-react';
+import { BookOpen, Wallet, PiggyBank, Smartphone, PlayCircle, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function Aprendizaje() {
- 
- const navigate = useNavigate();
+  const navigate = useNavigate();
+
   return (
-    
+    <div className="min-h-screen bg-gradient-to-b from-white via-purple-50 to-white px-6 md:px-20 pt-32 pb-24 font-sans">
 
-    // SECCIÓN CORREGIDA: pt-32 para el espacio del Navbar y fondo refinado
-    <div className="min-h-screen bg-[#F9FAFB] px-6 md:px-20 pt-32 pb-20 font-sans">
-
-      {/* HEADER / HERO */}
-      <div className="max-w-4xl mb-16">
+      {/* HERO */}
+      <div className="max-w-5xl mx-auto text-center mb-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="inline-flex items-center gap-2 bg-purple-100 text-[#7422c4] px-4 py-2 rounded-full text-sm font-bold mb-6"
+          className="inline-flex items-center gap-2 bg-purple-100 text-[#7422c4] px-5 py-2 rounded-full text-sm font-semibold mb-6 shadow-sm"
         >
-          <BookOpen size={16} /> <span>Educación Financiera</span>
+          <BookOpen size={16} /> Educación Financiera
         </motion.div>
-        
-        <motion.h1 
+
+        <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-black text-gray-900 leading-tight tracking-tight"
+          className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight"
         >
-          Aprende con <span className="text-[#7422c4]">Yape</span>
+          Aprende a usar tu dinero{" "}
+          <span className="bg-gradient-to-r from-[#7422c4] to-purple-400 bg-clip-text text-transparent">
+            como un pro
+          </span>
         </motion.h1>
-        
-        <motion.p 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="mt-6 text-gray-500 text-lg md:text-xl font-light max-w-2xl leading-relaxed"
+          className="mt-6 text-gray-500 text-lg md:text-xl max-w-2xl mx-auto"
         >
-          No solo te ayudamos a conseguir trabajo, también te enseñamos a
-          manejar tu dinero y tomar mejores decisiones para tu futuro. 🚀
+          No es solo ganar dinero. Es saber usarlo, hacerlo crecer y construir tu independencia financiera desde hoy.
         </motion.p>
       </div>
 
-      {/* CARDS PRINCIPALES */}
-      <div className="grid md:grid-cols-3 gap-8 mt-10">
-        <motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 300 }}>
-          <Card icon={<Wallet className="text-[#7422c4]" size={32} />} title="Gestión de dinero">
-            Organiza tus ingresos, controla tus gastos y crea tu primer presupuesto de forma sencilla.
-          </Card>
-        </motion.div>
-
-        <motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 300 }}>
-          <Card icon={<PiggyBank className="text-[#7422c4]" size={32} />} title="Ahorro inteligente">
-            Aprende a ahorrar sin dejar de disfrutar, con tips prácticos que puedes aplicar hoy mismo.
-          </Card>
-        </motion.div>
-
-        <motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 300 }}>
-          <Card icon={<Smartphone className="text-[#7422c4]" size={32} />} title="Herramientas digitales">
-            Domina Yape para pagar, recargar y simplificar tu día a día con total seguridad.
-          </Card>
-        </motion.div>
+      {/* CARDS */}
+      <div className="grid md:grid-cols-3 gap-8">
+        {[{
+          icon: <Wallet size={30} />,
+          title: "Gestión de dinero",
+          desc: "Controla ingresos, gastos y crea tu primer presupuesto sin complicarte."
+        },{
+          icon: <PiggyBank size={30} />,
+          title: "Ahorro inteligente",
+          desc: "Aprende a ahorrar sin dejar de disfrutar tu día a día."
+        },{
+          icon: <Smartphone size={30} />,
+          title: "Herramientas digitales",
+          desc: "Usa Yape para simplificar tu vida financiera con seguridad."
+        }].map((item, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ y: -8 }}
+            className="bg-white/70 backdrop-blur-xl border border-white/40 p-8 rounded-3xl shadow-md hover:shadow-xl transition-all"
+          >
+            <div className="text-[#7422c4] mb-4">{item.icon}</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+            <p className="text-gray-500">{item.desc}</p>
+          </motion.div>
+        ))}
       </div>
 
-      {/* SECCIÓN DIFERENCIAL (BANNER) */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
+      {/* BANNER */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="mt-20 bg-[#7422c4] text-white p-10 md:p-16 rounded-[3rem] shadow-2xl relative overflow-hidden"
+        className="mt-24 rounded-[3rem] p-12 md:p-16 bg-gradient-to-r from-[#7422c4] to-purple-500 text-white shadow-2xl relative overflow-hidden"
       >
-        <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
-        
-        <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
-          <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-black mb-4 italic">
-              🚀 Más que empleabilidad
+        <div className="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl -top-20 -right-20"></div>
+
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <h2 className="text-4xl font-extrabold mb-4">
+              Tu libertad financiera empieza aquí 🚀
             </h2>
-            <p className="text-purple-100 text-lg font-light leading-relaxed">
-              Queremos que construyas tu <strong>independencia financiera</strong>. Conseguir el empleo es el primer paso; saber qué hacer con tu primer sueldo es el que cambia tu vida.
+            <p className="text-purple-100 max-w-xl">
+              Conseguir ingresos es solo el inicio. Aprender a administrarlos es lo que cambia tu vida.
             </p>
           </div>
+
           <button
-  onClick={() => navigate("/curso")}
-  className="bg-white text-[#7422c4] px-8 py-4 rounded-2xl font-black shadow-xl hover:bg-purple-50 transition-all active:scale-95"
->
-  Empezar curso gratis
-</button>
+            onClick={() => navigate("/curso")}
+            className="bg-white text-[#7422c4] px-8 py-4 rounded-2xl font-bold shadow-lg hover:scale-105 transition-all"
+          >
+            Empezar gratis
+          </button>
         </div>
       </motion.div>
 
-      {/* SECCIÓN DE VIDEOS */}
-      <div className="mt-24">
-        <div className="flex items-center gap-3 mb-10">
-          <div className="p-3 bg-purple-50 text-[#7422c4] rounded-2xl">
-            <PlayCircle size={24} />
-          </div>
-          <h2 className="text-3xl font-black text-gray-900">Aprende viendo</h2>
-        </div>
+      {/* VIDEOS */}
+      <div className="mt-28">
+        <h2 className="text-3xl font-extrabold text-gray-900 mb-10 flex items-center gap-3">
+          <PlayCircle className="text-[#7422c4]" /> Aprende viendo
+        </h2>
 
-<div className="grid md:grid-cols-2 gap-10 mt-6">
-
-  {/* VIDEO 1 */}
-  <motion.div 
-    whileHover={{ scale: 1.02 }}
-    className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all"
-  >
-    <iframe
-  className="w-full h-64 rounded-t-[2.5rem]"
-  src="https://www.youtube.com/embed/f2O4Q-T12FI"
-  title="YouTube video"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-></iframe>
-
-    <div className="p-8">
-      <p className="font-black text-xl text-gray-900 mb-2">
-        💰 Cómo hacer tu presupuesto
-      </p>
-      <p className="text-gray-500 font-light">
-        Aprende a organizar tu dinero desde cero con plantillas reales.
-      </p>
-    </div>
-  </motion.div>
-
-  {/* VIDEO 2 */}
-  <motion.div 
-    whileHover={{ scale: 1.02 }}
-    className="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all"
-  >
-    <iframe
-      className="w-full h-64 rounded-t-[2.5rem]"
-      src="https://www.youtube.com/embed/QThz1B8SHmc"
-      title="YouTube video"
-       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    ></iframe>
-
-    <div className="p-8">
-      <p className="font-black text-xl text-gray-900 mb-2">
-        🐷 Tips para ahorrar
-      </p>
-      <p className="text-gray-500 font-light">
-        Pequeños cambios en tus hábitos que harán crecer tu cuenta de Yape.
-      </p>
-    </div>
-  </motion.div>
-
-</div>
-</div>
-     
-     
-      {/* RECOMENDACIONES FINALES */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        className="mt-24 max-w-3xl"
-      >
-        <h2 className="text-2xl font-black text-gray-900 mb-8 ml-2">💡 Recomendaciones para ti</h2>
-        <div className="space-y-4">
+        <div className="grid md:grid-cols-2 gap-10">
           {[
-            "Registra todos tus gastos diarios en un app o nota.",
-            "Separa al menos el 10% de tus ingresos apenas los recibas.",
-            "Usa las 'Metas' de Yape para controlar tus ahorros."
-          ].map((tip, i) => (
-            <div key={i} className="flex items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-              <CheckCircle2 className="text-emerald-500" size={24} />
-              <p className="font-bold text-gray-700">{tip}</p>
-            </div>
+            {
+              title: "Cómo hacer tu presupuesto",
+              desc: "Organiza tu dinero desde cero.",
+              url: "https://www.youtube.com/embed/f2O4Q-T12FI"
+            },
+            {
+              title: "Tips para ahorrar",
+              desc: "Mejora tus hábitos financieros.",
+              url: "https://www.youtube.com/embed/QThz1B8SHmc"
+            }
+          ].map((video, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.03 }}
+              className="rounded-3xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all"
+            >
+              <iframe
+                className="w-full h-64"
+                src={video.url}
+                allowFullScreen
+              />
+              <div className="p-6">
+                <h3 className="font-bold text-lg">{video.title}</h3>
+                <p className="text-gray-500">{video.desc}</p>
+              </div>
+            </motion.div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
-      {/* RECOMENDACIONES FINALES */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        className="mt-24 max-w-3xl"
+     {/* TIPS CON IMPORTANCIA */}
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  className="mt-28 max-w-5xl"
+>
+  {/* HEADER */}
+  <div className="mb-12">
+    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+      💡 Mejora tus hábitos financieros
+    </h2>
+    <p className="text-gray-500 mt-2">
+      Sigue este orden para construir una base financiera sólida.
+    </p>
+  </div>
+
+  {/* CARDS */}
+  <div className="grid md:grid-cols-3 gap-6">
+    {[
+      {
+        title: "Controla tus gastos",
+        desc: "Registra todo lo que gastas para entender tu flujo de dinero.",
+        color: "emerald",
+        nivel: "Básico"
+      },
+      {
+        title: "Ahorra automáticamente",
+        desc: "Separa al menos el 10% apenas recibas tus ingresos.",
+        color: "yellow",
+        nivel: "Importante"
+      },
+      {
+        title: "Invierte en tu futuro",
+        desc: "Haz que tu dinero crezca con decisiones inteligentes.",
+        color: "blue",
+        nivel: "Pro"
+      }
+    ].map((tip, i) => (
+      <motion.div
+        key={i}
+        whileHover={{ y: -10 }}
+        className={`group p-6 rounded-3xl shadow-md hover:shadow-xl transition-all border backdrop-blur-xl
+        ${
+          tip.color === "emerald" &&
+          "bg-emerald-50/70 border-emerald-100"
+        }
+        ${
+          tip.color === "yellow" &&
+          "bg-yellow-50/70 border-yellow-100"
+        }
+        ${
+          tip.color === "blue" &&
+          "bg-blue-50/70 border-blue-100"
+        }
+        `}
       >
-        <h2 className="text-2xl font-black text-gray-900 mb-8 ml-2">💡 Recomendaciones para ti</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-  {[
-    {
-      titulo: "Padre Rico, Padre Pobre",
-      autor: "Robert Kiyosaki",
-      link: "https://www.amazon.com/"
-    },
-    {
-      titulo: "El Hombre Más Rico de Babilonia",
-      autor: "George S. Clason",
-      link: "https://www.amazon.com/"
-    },
-    {
-      titulo: "Economia para andar por casa",
-      autor: "Varios autores",
-      link: "https://www.casadellibro.com/libro-economia-para-andar-por-casa/9788483566954/2001775?srsltid=AfmBOooMCKQeCaIiu4kE9EWZVQ7WYITw3NaM_o59EeHw1DtF4FVdQKC9"
-    },
-    {
-      titulo: "Educación financiera avanzada partiendo de cero",
-      autor: "Gregorio Hernández Jiménez",
-      link: "https://www.amazon.com/-/es/Educaci%C3%B3n-financiera-avanzada-partiendo-cero/dp/1495247481"
-    },
-    {
-      titulo: "Economía básica",
-      autor: "Thomas Sowell",
-      link: "https://www.amazon.com/-/es/Econom%C3%ADa-b%C3%A1sica-econom%C3%ADa-escrito-sentido/dp/8423412644"
-    },
-    {
-      titulo: "La bolsa o la vida",
-      autor: "Vicki Robin",
-      link: "https://www.amazon.com/-/es/bolsa-vida-transformar-relaci%C3%B3n-financiera/dp/8416788103"
-    },
-  ].map((libro, i) => (
-    <a
-      key={i}
-      href={libro.link}
-      target="_blank"
-      className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all block"
-    >
-      <p className="font-black text-gray-900 text-lg">{libro.titulo}</p>
-      <p className="text-gray-500">{libro.autor}</p>
-      <p className="mt-3 text-[#7422c4] font-bold">Ver libro →</p>
-    </a>
-  ))}
-</div>
+        {/* NIVEL */}
+        <div className={`text-xs font-bold mb-3 px-3 py-1 rounded-full inline-block
+          ${
+            tip.color === "emerald" && "bg-emerald-100 text-emerald-700"
+          }
+          ${
+            tip.color === "yellow" && "bg-yellow-100 text-yellow-700"
+          }
+          ${
+            tip.color === "blue" && "bg-blue-100 text-blue-700"
+          }
+        `}>
+          {tip.nivel}
+        </div>
+
+        {/* ICONO */}
+        <div className={`w-12 h-12 flex items-center justify-center rounded-2xl mb-4 transition group-hover:scale-110
+          ${
+            tip.color === "emerald" && "bg-emerald-100 text-emerald-600"
+          }
+          ${
+            tip.color === "yellow" && "bg-yellow-100 text-yellow-600"
+          }
+          ${
+            tip.color === "blue" && "bg-blue-100 text-blue-600"
+          }
+        `}>
+          <CheckCircle2 size={22} />
+        </div>
+
+        {/* TEXTO */}
+        <h3 className="font-bold text-gray-900 text-lg mb-1">
+          {tip.title}
+        </h3>
+
+        <p className="text-gray-600 text-sm leading-relaxed">
+          {tip.desc}
+        </p>
       </motion.div>
+    ))}
+  </div>
+</motion.div>
+
+          {/* LIBROS RECOMENDADOS */}
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  className="mt-28"
+>
+  <h2 className="text-3xl font-extrabold text-gray-900 mb-10">
+    📚 Libros que te cambian la mentalidad
+  </h2>
+
+  <div className="grid md:grid-cols-3 gap-8">
+    {[
+      {
+        titulo: "Padre Rico, Padre Pobre",
+        autor: "Robert Kiyosaki",
+        link: "https://www.amazon.com/"
+      },
+      {
+        titulo: "El Hombre Más Rico de Babilonia",
+        autor: "George S. Clason",
+        link: "https://www.amazon.com/"
+      },
+      {
+        titulo: "Economía para andar por casa",
+        autor: "Varios autores",
+        link: "https://www.casadellibro.com/libro-economia-para-andar-por-casa/9788483566954"
+      },
+      {
+        titulo: "Educación financiera avanzada partiendo de cero",
+        autor: "Gregorio Hernández Jiménez",
+        link: "https://www.amazon.com/"
+      },
+      {
+        titulo: "Economía básica",
+        autor: "Thomas Sowell",
+        link: "https://www.amazon.com/"
+      },
+      {
+        titulo: "La bolsa o la vida",
+        autor: "Vicki Robin",
+        link: "https://www.amazon.com/"
+      }
+    ].map((libro, i) => (
+      <motion.a
+        key={i}
+        href={libro.link}
+        target="_blank"
+        whileHover={{ y: -6 }}
+        className="group bg-white/70 backdrop-blur-xl border border-white/40 p-6 rounded-3xl shadow-md hover:shadow-xl transition-all"
+      >
+        <div className="mb-4 text-[#7422c4] text-sm font-semibold">
+          Recomendado
+        </div>
+
+        <h3 className="font-bold text-lg text-gray-900 group-hover:text-[#7422c4] transition">
+          {libro.titulo}
+        </h3>
+
+        <p className="text-gray-500 text-sm mt-1">
+          {libro.autor}
+        </p>
+
+        <div className="mt-4 text-[#7422c4] font-semibold text-sm">
+          Ver libro →
+        </div>
+      </motion.a>
+    ))}
+  </div>
+</motion.div>
 
     </div>
   );

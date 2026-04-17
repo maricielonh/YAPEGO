@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, PlayCircle } from "lucide-react";
 
@@ -24,7 +24,7 @@ function StoryCard({ image, titulo, descripcion, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="cursor-pointer relative min-w-[300px] md:min-w-[400px] h-[220px] rounded-3xl overflow-hidden shadow-xl group"
+      className="cursor-pointer relative min-w-[300px] md:min-w-[400px] h-[220px] rounded-3xl overflow-hidden shadow-xl group hover:scale-[1.03] transition-all duration-500"
     >
       <img
         src={image}
@@ -76,7 +76,36 @@ function StoryCard({ image, titulo, descripcion, onClick }) {
 }
 
 export default function Inspiracion() {
-  const [selectedStory, setSelectedStory] = useState(null);
+const [selectedStory, setSelectedStory] = useState(null);
+const [current, setCurrent] = useState(0);
+const mensajes = [
+  {
+    mensaje:
+      "No importa de dónde vienes, sino hasta dónde quieres llegar. Atrévete a dar el primer paso.",
+    nombre: "Equipo Yape",
+  },
+  {
+    mensaje:
+      "Las oportunidades existen, pero hay que ir por ellas. Cree en ti incluso cuando sea difícil.",
+    nombre: "Área de Tecnología",
+  },
+  {
+    mensaje:
+      "Tu historia no termina en tus dificultades. Empieza cuando decides avanzar.",
+    nombre: "Equipo de Inclusión",
+  },
+];
+
+
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrent((prev) => (prev + 1) % mensajes.length);
+  }, 4000);
+
+  return () => clearInterval(interval);
+}, []);
+  
+
   const historias = [
     {
       image: "https://www.shutterstock.com/image-photo/cryptocurrency-exchange-growth-charts-bullish-260nw-2740790805.jpg",
@@ -101,11 +130,11 @@ export default function Inspiracion() {
     nombre: "Historia de Camila",
   },
   {
-    video: "https://www.youtube.com/embed/o5-6UZmRkTE",
-    nombre: "Historia de Diego",
+    video: "https://www.youtube.com/embed/6qFu0TiPVWs",
+    nombre: "Historia de Joaquin",
   },
-
 ];
+  
 
   const testimonios = [
   {
@@ -190,7 +219,7 @@ export default function Inspiracion() {
 
       {/* HISTORIAS */}
       <section>
-        <h2 className="text-2xl font-bold mb-6 text-gray-900">
+        <h2 className="text-3xl md:text-4xl font-black mb-8 text-gray-900">
           Historias destacadas
         </h2>
 
@@ -204,7 +233,43 @@ export default function Inspiracion() {
 ))}
         </div>
       </section>
+{/* MENSAJES INSPIRADORES */}
+<section className="mt-24 py-16 bg-gradient-to-r from-purple-50 via-white to-purple-50 rounded-3xl">
+  <div className="max-w-4xl mx-auto text-center px-6">
 
+    <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-10">
+      Mensajes que inspiran 💜
+    </h2>
+
+    <motion.div
+      key={current}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="bg-white p-10 rounded-3xl shadow-xl border border-gray-100"
+    >
+      <p className="text-lg md:text-xl text-gray-700 italic leading-relaxed mb-6">
+        “{mensajes[current].mensaje}”
+      </p>
+
+      <span className="text-purple-600 font-bold">
+        {mensajes[current].nombre}
+      </span>
+    </motion.div>
+
+    <div className="flex justify-center gap-2 mt-6">
+      {mensajes.map((_, i) => (
+        <div
+          key={i}
+          className={`h-2 w-2 rounded-full transition-all ${
+            current === i ? "bg-purple-600 w-6" : "bg-gray-300"
+          }`}
+        />
+      ))}
+    </div>
+
+  </div>
+</section>
     {selectedStory && (
   <div
     className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
