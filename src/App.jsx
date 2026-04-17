@@ -56,7 +56,8 @@ function App() {
         <Route path="/confianzalaboral" element={<ConfianzaLaboral />} />
 
         <Route path="/postular/:area" element={<FormularioPostulacion />} />
-        <Route path="/areas/:id" element={<DetalleArea />} />
+        <Route path="/area/:id" element={<DetalleArea />} />
+    
 
         {/* 🔐 AUTH */}
         <Route path="/login" element={<Login />} />
